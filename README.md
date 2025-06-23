@@ -24,3 +24,32 @@ This project analyzes traffic accident data from the Fatality Analysis Reporting
 
 Data comes from the [National Highway Traffic Safety Administration (NHTSA)](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars).
 
+| **Purpose**                     | **Suggested File Name**                  |
+| ------------------------------- | ---------------------------------------- |
+| Python notebook for SQL + EDA   | `sql_eda.ipynb`        |
+| SQL queries only                | `sql_queries.py` or `exploratory_sql.py` |
+| Data cleaning (Python)          | `data_cleaning.py`                       |
+| Visualization script            | `visualizations.py`                      |
+| Combined script (ETL + EDA)     | `fars_analysis.py` or `fars_pipeline.py` |
+| Power BI export prep (optional) | `export_for_powerbi.py`                  |
+
+
+## 🧮 SQL Analysis (Week 2, Day 3–5)
+
+I performed SQL-based exploration on MySQL using data from NHTSA’s FARS dataset.
+
+### 🔍 Key Questions
+
+- States with highest fatalities
+- Peak accident hours
+- Average driver age in fatal crashes
+
+### 📊 Sample Query – Fatalities by State
+
+```sql
+SELECT statename, SUM(fatals) AS total_fatalities
+FROM accident
+GROUP BY statename
+ORDER BY total_fatalities DESC
+LIMIT 10;
+✅ This helped us identify that states like Texas and California had the most accident-related deaths.****
