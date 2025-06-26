@@ -108,3 +108,58 @@ for table in ['accident', 'person', 'vehicle']:
     count = pd.read_sql(f"SELECT COUNT(*) as total FROM {table}", engine)
     print(f"{table}: {count['total'][0]} rows")
 
+
+## 📊 Exploratory Data Analysis (Python)
+
+In this step, we analyze the `accident` table from the FARS Traffic Accident dataset using Python libraries such as **pandas**, **seaborn**, and **matplotlib**. The database connection is established via **SQLAlchemy** to MySQL.
+
+---
+
+### 🔌 Step 1: Load Data from MySQL
+
+We connect to the MySQL database and read the `accident` table into a pandas DataFrame:
+
+```python
+from sqlalchemy import create_engine
+import pandas as pd
+
+engine = create_engine("mysql+pymysql://root:root@localhost/fars_traffic_analysis")
+df_accident = pd.read_sql("SELECT * FROM accident", engine)
+
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10,6))
+df_accident.groupby("statename")["fatals"].sum().sort_values(ascending=False).head(10).plot(
+    kind="bar", color="salmon", edgecolor="black"
+)
+plt.title("Top 10 States by Fatalities", fontsize=14)
+plt.ylabel("Total Fatalities")
+plt.xlabel("State")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+
+import seaborn as sns
+
+plt.figure(figsize=(12,6))
+order = ['12:00 AM', '1:00 AM', '2:00 AM', ..., '11:00 PM']  # chronological order
+sns.countplot(data=df_accident, x="hourname", order=order, palette="crest")
+plt.title("Accidents by Hour of the Day", fontsize=14)
+plt.xlabel("Hour")
+plt.ylabel("Number of Accidents")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+🧠 Tools Used
+Python 3
+
+pandas for data manipulation
+
+matplotlib/seaborn for visualization
+
+SQLAlchemy/pymysql for database connection
