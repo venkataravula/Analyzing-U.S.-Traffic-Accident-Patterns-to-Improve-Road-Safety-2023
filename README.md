@@ -58,7 +58,7 @@ Day 5   ## Data Cleaning or ## Preprocessing
 🧼 Data Cleaning: person.csv
 As part of the ETL process, we performed data cleaning on the person.csv file before importing it into MySQL. The raw CSV file contained many missing (NaN) values, especially in categorical fields. This step was necessary to ensure data integrity and prevent SQL import errors.
 import pandas as pd
-```
+
 # Load raw CSV file
 df = pd.read_csv("D:/Project/files/person.csv", low_memory=False)
 
