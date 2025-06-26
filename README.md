@@ -44,7 +44,7 @@ I performed SQL-based exploration on MySQL using data from NHTSA’s FARS datase
 - Peak accident hours
 - Average driver age in fatal crashes
 
-### 📊 Sample Query – Fatalities by State
+### 📊 Sample Query – 
 
 ```sql
 SELECT statename, SUM(fatals) AS total_fatalities
