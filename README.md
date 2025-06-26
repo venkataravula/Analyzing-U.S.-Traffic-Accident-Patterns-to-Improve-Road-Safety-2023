@@ -65,6 +65,20 @@ df = pd.read_csv("D:/Project/files/person.csv", low_memory=False)
 # Replace NaN values only in object (string/categorical) columns
 str_cols = df.select_dtypes(include='object').columns
 df[str_cols] = df[str_cols].fillna("Unknown")
+-=---------------------------------------------------------------------------
+##Use Python to Load CSV into MySQL (more reliable)
+
+import pandas as pd
+from sqlalchemy import create_engine
+
+# Load cleaned person data
+df = pd.read_csv("D:/Project/files/cleaned_vehicle.csv", low_memory=False)
+
+# Connect to MySQL
+engine = create_engine("mysql+pymysql://root:root@localhost/fars_traffic_analysis")
+
+# Push to MySQL
+df.to_sql("vehicle", con=engine, index=False, if_exists="replace", chunksize=1000)
 
 # Save the cleaned data to a new CSV file
 df.to_csv("D:/Project/files/person_cleaned.csv", index=False)
@@ -81,4 +95,16 @@ This step ensures consistent formatting and avoids common MySQL import errors li
 Incorrect integer value: 'Unknown' for column 'some_column'
 
 Cleaning was performed using pandas for efficient handling of large datasets.
+
+## Verify Data in Python
+
+import pandas as pd
+from sqlalchemy import create_engine
+
+engine = create_engine("mysql+pymysql://root:root@localhost/fars_traffic_analysis")
+
+# Count rows
+for table in ['accident', 'person', 'vehicle']:
+    count = pd.read_sql(f"SELECT COUNT(*) as total FROM {table}", engine)
+    print(f"{table}: {count['total'][0]} rows")
 
