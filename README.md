@@ -162,3 +162,27 @@ pandas for data manipulation
 matplotlib/seaborn for visualization
 
 SQLAlchemy/pymysql for database connection
+
+```
+
+🔄 SQL JOIN Analysis
+To enable cross-dimensional insights, we joined the three FARS tables:
+
+accident (time, location)
+
+person (demographics, injury severity)
+
+vehicle (make, body type, year)
+
+Using SQL joins, we answered questions like:
+
+Which vehicle body types are linked to the highest fatalities?
+4-door sedan, hardtop	8989
+
+What is the average driver age per vehicle make?
+Unknown Make	855.8792
+
+How do accident patterns vary by day of week and body type?
+22	4-door sedan, hardtop	550
+
+All queries were executed via SQL and visualized in Python.
