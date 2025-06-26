@@ -95,7 +95,7 @@ This step ensures consistent formatting and avoids common MySQL import errors li
 Incorrect integer value: 'Unknown' for column 'some_column'
 
 Cleaning was performed using pandas for efficient handling of large datasets.
-
+'''
 ## Verify Data in Python
 
 import pandas as pd
@@ -113,8 +113,7 @@ for table in ['accident', 'person', 'vehicle']:
 
 In this step, we analyze the `accident` table from the FARS Traffic Accident dataset using Python libraries such as **pandas**, **seaborn**, and **matplotlib**. The database connection is established via **SQLAlchemy** to MySQL.
 
----
-
+```
 ### 🔌 Step 1: Load Data from MySQL
 
 We connect to the MySQL database and read the `accident` table into a pandas DataFrame:
