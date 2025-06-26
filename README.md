@@ -53,3 +53,32 @@ GROUP BY statename
 ORDER BY total_fatalities DESC
 LIMIT 10;
 ✅ This helped us identify that states like Texas and California had the most accident-related deaths.****
+
+Day 5   ## Data Cleaning or ## Preprocessing
+🧼 Data Cleaning: person.csv
+As part of the ETL process, we performed data cleaning on the person.csv file before importing it into MySQL. The raw CSV file contained many missing (NaN) values, especially in categorical fields. This step was necessary to ensure data integrity and prevent SQL import errors.
+import pandas as pd
+
+# Load raw CSV file
+df = pd.read_csv("D:/Project/files/person.csv", low_memory=False)
+
+# Replace NaN values only in object (string/categorical) columns
+str_cols = df.select_dtypes(include='object').columns
+df[str_cols] = df[str_cols].fillna("Unknown")
+
+# Save the cleaned data to a new CSV file
+df.to_csv("D:/Project/files/person_cleaned.csv", index=False)
+✅ Outcome:
+Missing values in text fields are replaced with "Unknown".
+
+Numeric columns remain unchanged to preserve data types.
+
+The cleaned CSV (person_cleaned.csv) is ready for high-performance import into MySQL using LOAD DATA INFILE.
+
+📌 Notes:
+This step ensures consistent formatting and avoids common MySQL import errors like:
+
+Incorrect integer value: 'Unknown' for column 'some_column'
+
+Cleaning was performed using pandas for efficient handling of large datasets.
+
