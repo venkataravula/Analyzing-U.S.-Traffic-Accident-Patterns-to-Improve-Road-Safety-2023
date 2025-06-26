@@ -58,7 +58,7 @@ Day 5   ## Data Cleaning or ## Preprocessing
 🧼 Data Cleaning: person.csv
 As part of the ETL process, we performed data cleaning on the person.csv file before importing it into MySQL. The raw CSV file contained many missing (NaN) values, especially in categorical fields. This step was necessary to ensure data integrity and prevent SQL import errors.
 import pandas as pd
-
+```
 # Load raw CSV file
 df = pd.read_csv("D:/Project/files/person.csv", low_memory=False)
 
@@ -108,12 +108,12 @@ for table in ['accident', 'person', 'vehicle']:
     count = pd.read_sql(f"SELECT COUNT(*) as total FROM {table}", engine)
     print(f"{table}: {count['total'][0]} rows")
 
-
+```
 ## 📊 Exploratory Data Analysis (Python)
 
 In this step, we analyze the `accident` table from the FARS Traffic Accident dataset using Python libraries such as **pandas**, **seaborn**, and **matplotlib**. The database connection is established via **SQLAlchemy** to MySQL.
 
-```
+
 ### 🔌 Step 1: Load Data from MySQL
 
 We connect to the MySQL database and read the `accident` table into a pandas DataFrame:
